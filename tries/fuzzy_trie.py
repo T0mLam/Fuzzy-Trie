@@ -1,4 +1,4 @@
-from trie import Trie
+from tries.trie import Trie
 
 
 class FuzzyTrie(Trie):

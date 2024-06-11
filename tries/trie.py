@@ -1,6 +1,6 @@
 from typing import List
 
-from node import TrieNode
+from tries.node import TrieNode
 
 
 class Trie:
