@@ -10,9 +10,9 @@ class Trie:
         root: A pointer to the root of the Trie.
 
     Methods:
-        find: Return True if the word is in the dictionary else False.
+        insert: Insert a string into the Trie.
+        find: Return True if the word is in the Trie else False.
         complete: Complete a word based on the input of the user and return the list of words ordered by their length.
-        fizzy_search: A search method which returns all similar words in the trie with at most (threshold) Levenshtein distance.
     """
     def __init__(self) -> None:
         """Construct the root of the trie."""
@@ -51,7 +51,7 @@ class Trie:
             word (str): A word to be searched for in the trie.
         
         Returns:
-            True if the word is found else false.
+            bool: True if the word is found else false.
 
         Raises:
             TypeError: Errors caused by non-string input of 'word'.
@@ -78,7 +78,7 @@ class Trie:
             word (str): A word to be completed.
         
         Returns:
-            A list of possible words in the trie.
+            List[str]: A list of possible words in the trie.
 
         Raises:
             TypeError: Errors caused by non-string input of 'word'.
