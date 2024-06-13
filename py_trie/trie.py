@@ -1,6 +1,6 @@
 from typing import List
 
-from tries.node import TrieNode
+from .node import TrieNode
 
 
 class Trie:
@@ -14,6 +14,7 @@ class Trie:
         find: Return True if the word is in the Trie else False.
         complete: Complete a word based on the input of the user and return the list of words ordered by their length.
     """
+    
     def __init__(self) -> None:
         """Construct the root of the trie."""
         self.root: TrieNode = TrieNode()

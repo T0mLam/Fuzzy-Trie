@@ -1,8 +1,8 @@
-from tries.trie import Trie
+from .trie import Trie
 
 
 class FuzzyTrie(Trie):
-    """A prefix tree data structure which stores an alphabet as value in each node.
+    """A prefix tree data structure with approximate string matching function.
     
     Attributes:
         root: A pointer to the root of the Trie.
@@ -15,5 +15,5 @@ class FuzzyTrie(Trie):
     """
 
     def __init__(self) -> None:
-        """Inherit the attributes and methods from the base Tri.e"""
+        """Inherit the attributes and methods from the base Trie."""
         super().__init__()
