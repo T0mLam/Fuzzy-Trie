@@ -1,20 +1,20 @@
 # Fuzzy-Trie
 
 ## Project Description
-Prefix-tree data structure with a fizzy search algorithm based on Shang and Merrettal's paper [1].
+Prefix-tree data structure with an approximate string matching algorithm based on Shang and Merrettal's paper [1].
 
 ## Import Data Structures
-The `tries` module contains the 2 implementations of the trie.
+The `py_trie` module contains the 2 implementations of the trie.
 
 To import and use the data structure independently, add the following code in your program:
 ```python
-from tries.{module} import {data structure}
+from py_trie.{module} import {data structure}
 ```
 Replace `{module}` with the name of the module, `{data structure}` with the name of the class, <br>
 e.g.
 ```python
 # Import the fuzzy trie data structure
-from tries.fuzzy_trie import FuzzyTrie
+from py_trie.fuzzy_trie import FuzzyTrie
 ```
 
 ## References
