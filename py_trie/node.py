@@ -6,6 +6,8 @@ class TrieNode:
         end_of_word (bool): A boolean value indicating whether the current character is the end of the word.
     """
     
+    __slots__ = ('children', 'end_of_word')
+    
     def __init__(self) -> None:
         """Consturct the children and end_of_word attributes."""
         self.children: dict = {}
