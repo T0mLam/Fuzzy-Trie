@@ -6,11 +6,7 @@ from py_trie.trie import Trie
 class TestTrie(unittest.TestCase):
     """Test the trie properties."""
 
-    def setUp(self):, None)
-        self.assertTrue(self.trie.find('apple'))
-        self.assertFalse(self.trie.find('app'))
-        self.assertFalse(self.trie.find('aPple'))
-        
+    def setUp(self):
         self.trie = Trie()
 
     def test_insert(self):
@@ -21,7 +17,11 @@ class TestTrie(unittest.TestCase):
     def test_find(self):
         self.test_insert()
         self.assertRaises(TypeError, self.trie.find, '')
-        self.assertRaises(TypeError, self.trie.find
+        self.assertRaises(TypeError, self.trie.find, None)
+        self.assertTrue(self.trie.find('apple'))
+        self.assertFalse(self.trie.find('app'))
+        self.assertFalse(self.trie.find('aPple'))
+        
     def test_complete(self):
         self.test_insert()
         self.assertIn('apple', self.trie.complete('app'))
