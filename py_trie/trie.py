@@ -19,17 +19,20 @@ class Trie:
         """Construct the root of the trie."""
         self.root: TrieNode = TrieNode()
 
-    def insert(self, word: str) -> None:
+    def insert(self, word: str) -> bool:
         """Insert the word into the trie.
 
         Args:
             word (str): A word to be inserted into the trie.
 
+        Returns:
+            bool: Return true if the word is successfully added to the trie.
+
         Raises:
-            TypeError: Errors caused by non-string input of 'word'.
+            TypeError: Errors caused by non-string or empty input of 'word'.
         """
-        if not isinstance(word, str):
-            raise TypeError("The input parameter 'word' must be a string")
+        if not isinstance(word, str) or not word:
+            raise TypeError("The input parameter 'word' must be a non-empty string")
 
         # Create a pointer to the root
         node = self.root
@@ -45,6 +48,8 @@ class Trie:
         # Set the node storing the last character of the word to be the end_of_word
         node.end_of_word = True
 
+        return True
+
     def find(self, word: str) -> bool:
         """Search whether the word is stored in the trie.
 
@@ -55,10 +60,10 @@ class Trie:
             bool: True if the word is found else false.
 
         Raises:
-            TypeError: Errors caused by non-string input of 'word'.
+            TypeError: Errors caused by non-string or empty input of 'word'.
         """
-        if not isinstance(word, str):
-            raise TypeError("The input parameter 'word' must be a string")
+        if not isinstance(word, str) or not word:
+            raise TypeError("The input parameter 'word' must be a non-empty string")
 
         node = self.root
         # Check every character in the word
