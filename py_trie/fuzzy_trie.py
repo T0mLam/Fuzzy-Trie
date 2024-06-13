@@ -16,11 +16,4 @@ class FuzzyTrie(Trie):
         fizzy_search: Search a list of words within a Levenshtein distance to the target string in the trie.
     """
     
-    def __init__(self) -> None:
-        """Inherit the attributes and methods from the base Trie."""
-        super().__init__()
-
-    def fuzzy_search(target: str, threshold: int) -> List[str]:
-        if not isinstance(target, str):
-            raise TypeError("The input parameter 'target' must be a string.")
-        pass
+    def __in
