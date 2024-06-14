@@ -1,4 +1,4 @@
-# Fuzzy-Trie
+# Fuzzy-Trie (unfinished)
 
 ## Project Description
 Prefix-tree data structure with an approximate string matching algorithm based on Shang and Merrettal's paper [1].
