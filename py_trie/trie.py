@@ -139,7 +139,10 @@ class Trie:
     
     def __contains__(self, item: str) -> bool:
         """Enable the use of membership test operator 'in' for the class."""
-        return self.find(item)
+        try:
+            return self.find(item)
+        except TypeError as exc:
+            raise TypeError("The 'in' operator only support non-empty string comparisons.") from exc
 
     def __len__(self) -> int:
         """Enable the use of 'len' operator for retrieving the total number of words in the trie."""
