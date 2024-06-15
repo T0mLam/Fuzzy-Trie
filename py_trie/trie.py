@@ -8,6 +8,7 @@ class Trie:
     
     Attributes:
         root: A pointer to the root of the Trie.
+        size: The total number of words in the Trie.
 
     Methods:
         insert: Insert a string into the Trie.
@@ -17,7 +18,16 @@ class Trie:
     
     def __init__(self) -> None:
         """Construct the root of the trie."""
-        self.root: TrieNode = TrieNode()
+        self._root: TrieNode = TrieNode()
+        self._size: int = 0
+
+    @property
+    def root(self) -> TrieNode:
+        return self._root
+    
+    @property
+    def size(self) -> int:
+        return self._size
 
     def insert(self, word: str) -> bool:
         """Insert the word into the trie.
@@ -35,7 +45,7 @@ class Trie:
             raise TypeError("The input parameter 'word' must be a non-empty string")
 
         # Create a pointer to the root
-        node = self.root
+        node = self._root
 
         # Check if the character is a child of the root
         for char in word:
@@ -47,6 +57,9 @@ class Trie:
             
         # Set the node storing the last character of the word to be the end_of_word
         node.end_of_word = True
+
+        # Increment the number of words in the trie by 1
+        self._size += 1
 
         return True
 
@@ -65,7 +78,7 @@ class Trie:
         if not isinstance(word, str) or not word:
             raise TypeError("The input parameter 'word' must be a non-empty string")
 
-        node = self.root
+        node = self._root
         # Check every character in the word
         for char in word:
             # Return false if any char is not found
@@ -92,7 +105,7 @@ class Trie:
         if not isinstance(word, str):
             raise TypeError("The input parameter 'word' must be a string")
 
-        node = self.root
+        node = self._root
         res = []
 
         # Find the node storing the last character of the input string
@@ -121,3 +134,11 @@ class Trie:
         dfs(node)
         # Return the list sorted by the length of each word
         return sorted(res, key=len)
+    
+    def __contains__(self, item: str) -> bool:
+        """Enable the use of membership test operator 'in' for the class."""
+        return self.find(item)
+
+    def __len__(self) -> int:
+        """Enable the use of 'len' operator for retrieving the total number of words in the trie."""
+        return self._size
