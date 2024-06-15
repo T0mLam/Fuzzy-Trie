@@ -24,6 +24,7 @@ class TestTrie(unittest.TestCase):
         
     def test_complete(self):
         self.test_insert()
+        self.assertRaises(TypeError, self.trie.complete, None)
         self.assertIn('apple', self.trie.complete('app'))
         self.assertIn('apple', self.trie.complete(''))
         self.assertNotIn('apple', self.trie.complete('apple'))
