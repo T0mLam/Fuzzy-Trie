@@ -23,10 +23,12 @@ class Trie:
 
     @property
     def root(self) -> TrieNode:
+        """Declare 'root' as a read-only attribute."""
         return self._root
     
     @property
     def size(self) -> int:
+        """Declare 'size' as a read-only attribute."""
         return self._size
 
     def insert(self, word: str) -> bool:
