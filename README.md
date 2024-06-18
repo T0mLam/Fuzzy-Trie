@@ -1,7 +1,7 @@
 # Fuzzy-Trie (unfinished)
 
 ## Project Description
-Prefix-tree data structure with an approximate string matching algorithm based on Shang and Merrettal's paper [1].
+Prefix-tree data structure with an approximate string matching algorithm modified from Shang and Merrettal's implementation [1].
 
 ## What is a Trie (Prefix-Tree)?
 
