@@ -25,8 +25,8 @@ class FuzzyTrie(Trie):
         self,
         target: str, 
         threshold: int,
-        sort_by_distance: bool = False,
-        num_return: int | None = None
+        num_return: int | None = None,
+        sort_by_distance: bool = False
     ) -> List[str]:
         """An approximate string matching method that return a list of word within a Levenshtein distance threshold.
         
@@ -78,6 +78,12 @@ class FuzzyTrie(Trie):
             # along with the Levenshtein distance to the result  
             if curr_row[-1] <= threshold and node.end_of_word:
                 res.append((curr_str, curr_row[-1]))
+            
+            # Stop the recursion once the number of element in result 
+            # meet the num_return parameter 
+            if (isinstance(num_return, int) and
+                len(res) == num_return):
+                return 
 
             # If the minimum value of the row has not exceeded the threshold, 
             # it is possible that adding additional characters 
