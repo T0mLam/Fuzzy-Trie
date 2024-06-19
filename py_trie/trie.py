@@ -153,4 +153,55 @@ class Trie:
         Args:
             word (str): A word to be completed.
         
-        Retu
+        Returns:
+            List[str]: A list of possible words in the trie.
+
+        Raises:
+            TypeError: Errors caused by non-string input of 'word'.
+        """
+        if not isinstance(word, str):
+            raise TypeError("The input parameter 'word' must be a string")
+
+        node = self._root
+        res = []
+
+        # Find the node storing the last character of the input string
+        for char in word:
+            # Return an empty list if the input string is not found
+            if char not in node.children:
+                return []
+            node = node.children[char]
+
+        # Use backtracking to find all the combinations of words starting
+        # at the last character of the input string
+        cache = []
+        def dfs(node: TrieNode) -> None:
+            # Append the word to res if it is marked as the end of word
+            if node.end_of_word and cache:
+                res.append(word + ''.join(cache)) 
+
+            for child in node.children:
+                # Backtracking 
+                # Use a cache variable to store the combinations of the word
+                cache.append(child)
+                # Continue recursion on each child of the subtree
+                dfs(node.children[child])
+                # Remove the char from the cache once a combination have been added
+                cache.pop()
+
+        dfs(node)
+        # Return the list sorted by the length of each word
+        return sorted(res, key=len)
+    
+    def __contains__(self, item: str) -> bool:
+        """Enable the use of membership test operator 'in' for the class."""
+        try:
+            return self.find(item)
+        except TypeError as exc:
+            raise TypeError(
+                "The 'in' operator only support non-empty string comparisons."
+            ) from exc
+
+    def __len__(self) -> int:
+        """Enable the use of 'len' operator for retrieving the total number of words."""
+        return self._size
