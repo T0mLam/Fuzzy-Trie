@@ -13,6 +13,7 @@ class Trie:
     Methods:
         insert: Insert a string into the Trie.
         find: Return True if the word is in the Trie else False.
+        delete: Delete a word in the Trie and return True if successful.
         complete: Complete a word based on the input of the user and return the list of words ordered by their length.
     """
     
@@ -62,6 +63,59 @@ class Trie:
 
         # Increment the number of words in the trie by 1
         self._size += 1
+
+        return True
+    
+    def delete(self, word: str) -> bool:
+        """Delete a word in the trie.
+
+        Args:
+            word (str): A word to be deleted in the trie.
+
+        Returns:
+            bool: Return true if the word is successfully deleted, false if not present.
+
+        Raises:
+            TypeError: Errors caused by non-string or empty input of 'word'.
+        """
+        if not isinstance(word, str) or not word:
+            raise TypeError("The input parameter 'word' must be a non-empty string")
+        
+        # Return False if the word to be deleted is not present in the trie.
+        if not self.find(word):
+            return False
+
+        def dfs(i: int, node: TrieNode) -> None:
+            # Stop the recusion whether after reaching the last character.
+            # Set the end of word attribute to be False
+            # and return True to indicate the node is deletable if it is a leaf.
+            if i == len(word) - 1:
+                node.end_of_word = False
+                return not node.children
+            
+            # The variable 'removable' indicates whether
+            # the subtree of the node could be deleted. 
+            removable = dfs(i + 1, node.children[word[i + 1]])
+
+            # If the subtree is removable and the current node 
+            # and only has 1 child, remove its child.
+            if removable and len(node.children) == 1:
+                del node.children[word[i + 1]]
+            
+            # Return current node to be deletable if it is the not 
+            # the end of a word, has no children and has a removable subtree.
+            return (
+                not node.end_of_word and 
+                not node.children and
+                removable
+            )
+
+        # Start the dfs at the first character of the word
+        node = self._root
+        dfs(0, node.children[word[0]])
+
+        # Decrement the number of words in the trie by 1
+        self._size -= 1
 
         return True
 
