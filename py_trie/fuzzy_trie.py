@@ -74,10 +74,10 @@ class FuzzyTrie(Trie):
             curr_row = edit_dist(letter, prev_row)
 
             # If the last value of the row is less than the threshold
-            # and it is a word stored in the trie, push the word
-            # along with the Levenshtein distance to the result  
+            # and it is a word stored in the trie, push the word to the result.
             if curr_row[-1] <= threshold and node.end_of_word:
-                res.append((curr_str, curr_row[-1]))
+                word = (curr_str, curr_row[-1]) if sort_by_distance else curr_str
+                res.append(word)
             
             # Stop the recursion once the number of element in result 
             # meet the num_return parameter 
@@ -124,5 +124,10 @@ class FuzzyTrie(Trie):
         # Start the recursion from every child of the trie root
         for child in node.children:
             dfs(node.children[child], child, first_row)
+
+        # Sort the words by their Levenshtein distances
+        # if sort_by_distance is set to True
+        if sort_by_distance:
+            res = [tup[0] for tup in sorted(res, key=lambda x: x[1])]
 
         return res
