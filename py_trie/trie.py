@@ -54,8 +54,8 @@ class Trie:
         """Declare 'size' as a read-only attribute."""
         return self._size
     
-    @staticmethod
-    def from_list(words: List[str]) -> Trie:
+    @classmethod
+    def from_list(cls, words: List[str]) -> Trie:
         """Create a Trie object from a python list.
         
         Args:
@@ -76,15 +76,15 @@ class Trie:
         ):
             raise TypeError("The input parameter 'words' must be a list of strings.")
 
-        trie = Trie()
+        trie = cls()
 
         for w in words:
             trie.insert(w)
 
         return trie
 
-    @staticmethod
-    def from_txt(path: str) -> Trie:
+    @classmethod
+    def from_txt(cls, path: str) -> Trie:
         """Create a Trie object from a txt file.
         
         Args:
@@ -114,7 +114,7 @@ class Trie:
                 f"The file with the path '{path}' is not found"
             ) from exc
         
-        return Trie.from_list(words)
+        return cls.from_list(words)
 
     def insert(self, word: str) -> bool:
         """Insert the word into the trie.

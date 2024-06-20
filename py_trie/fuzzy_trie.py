@@ -9,6 +9,7 @@ class FuzzyTrie(Trie):
     
     Attributes:
         root: A pointer to the root of the Trie.
+        size: The total number of words in the Trie.
 
     Methods:
         insert: Insert a string into the Trie.
@@ -20,11 +21,11 @@ class FuzzyTrie(Trie):
                       to the target string in the trie.
         
     Static Methods: 
-        from_list: Create a Trie object from a python list.
-        from_txt: Create a Trie object from a txt file.
+        from_list: Create a FuzzyTrie object from a python list.
+        from_txt: Create a FuzzyTrie object from a txt file.
 
     To instantiate:
-        >>> trie = Trie()
+        >>> trie = FuzzyTrie()
     """
     
     def __init__(self) -> None:
