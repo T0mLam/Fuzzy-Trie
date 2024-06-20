@@ -20,7 +20,7 @@ class FuzzyTrie(Trie):
         fizzy_search: Search a list of words within a Levenshtein distance
                       to the target string in the trie.
         
-    Static Methods: 
+    Class Methods: 
         from_list: Create a FuzzyTrie object from a python list.
         from_txt: Create a FuzzyTrie object from a txt file.
 

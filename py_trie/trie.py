@@ -18,7 +18,7 @@ class Trie:
         complete: Complete a word based on the input of the user and
                   return the list of words ordered by their length.
 
-    Static Methods:
+    Class Methods:
         from_list: Create a Trie object from a python list.
         from_txt: Create a Trie object from a txt file.
 
