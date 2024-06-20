@@ -88,7 +88,7 @@ class Trie:
         """Create a Trie object from a txt file.
         
         Args:
-            path (str): The path of the txt file.
+            path (str): The absolute path of the txt file.
     
         Returns:
             Trie: A Trie object with inserted words from the file.
@@ -98,7 +98,9 @@ class Trie:
             FileNotFoundError: The file with the input path does not exist.
         
         To instantiate:
-            >>> trie = Trie.from_txt('...')
+            >>> import os
+            >>> path = os.path.dirname(__file__) + '...'
+            >>> trie = Trie.from_txt(path)
         """
         if not isinstance(path, str):
             raise TypeError("The input parameter 'path' must be a string.")
@@ -111,7 +113,8 @@ class Trie:
                     words.extend(line.strip().split())
         except FileNotFoundError as exc:
             raise FileNotFoundError(
-                f"The file with the path '{path}' is not found"
+                f"""The file with the path '{path}' is not found,
+                please use the absolute path of the file."""
             ) from exc
         
         return cls.from_list(words)

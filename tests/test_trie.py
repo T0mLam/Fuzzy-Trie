@@ -1,3 +1,4 @@
+import os
 import unittest
 
 from py_trie.trie import Trie
@@ -29,6 +30,23 @@ class TestTrie(unittest.TestCase):
         self.assertIn('apple', self.trie.complete(''))
         self.assertNotIn('apple', self.trie.complete('apple'))
         self.assertNotIn('apple', self.trie.complete('Ap'))
+        
+    def test_from_list(self):
+        words = ['apps', 'apple', 'apply']
+        self.trie = self.trie.from_list(words)
+        self.assertEqual(len(self.trie), 3)
+        self.assertListEqual(sorted(self.trie.complete('app')), sorted(words))
+        invalid_list = words + [1]
+        self.assertRaises(TypeError, self.trie.from_list, invalid_list)
+
+    def test_from_txt(self):
+        words = ['apps', 'apple', 'apples', 'apply']
+        path = os.path.dirname(__file__) + '/example.txt'
+        self.assertRaises(FileNotFoundError, self.trie.from_txt, path + 'x')
+        self.assertRaises(TypeError, self.trie.from_txt, 0)
+        self.trie = self.trie.from_txt(path)
+        self.assertEqual(len(self.trie), 4)
+        self.assertListEqual(sorted(self.trie.complete('app')), sorted(words))
 
 
 if __name__ == '__main__':
