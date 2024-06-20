@@ -272,4 +272,9 @@ class Trie:
                 cache.append(child)
                 # Continue recursion on each child of the subtree
                 dfs(node.children[child])
-                # Remove the char from the cache once a combination have
+                # Remove the char from the cache once a combination have been added
+                cache.pop()
+
+        dfs(node)
+        # Return the list sorted by the length of each word
+        return sorted(res, key=len)
