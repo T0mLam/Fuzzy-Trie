@@ -36,3 +36,7 @@ class TestFuzzyTrie(unittest.TestCase):
             sorted(self.words)
         )
         self.assertIn('app', self.trie.fuzzy_search('app', 1))
+
+
+if __name__ == '__main__':
+    unittest.main()
