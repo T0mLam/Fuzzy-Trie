@@ -18,6 +18,13 @@ class FuzzyTrie(Trie):
                   return the list of words ordered by their length.
         fizzy_search: Search a list of words within a Levenshtein distance
                       to the target string in the trie.
+        
+    Static Methods: 
+        from_list: Create a Trie object from a python list.
+        from_txt: Create a Trie object from a txt file.
+
+    To instantiate:
+        >>> trie = Trie()
     """
     
     def __init__(self) -> None:

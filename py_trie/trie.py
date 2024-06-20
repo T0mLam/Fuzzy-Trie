@@ -1,3 +1,4 @@
+from __future__ import annotations
 from typing import List
 
 from .node import TrieNode
@@ -16,12 +17,32 @@ class Trie:
         delete: Delete a word in the Trie and return True if successful.
         complete: Complete a word based on the input of the user and
                   return the list of words ordered by their length.
+
+    Static Methods:
+        from_list: Create a Trie object from a python list.
+        from_txt: Create a Trie object from a txt file.
+
+    To instantiate:
+        >>> trie = Trie()
     """
     
     def __init__(self) -> None:
         """Construct the root of the trie."""
         self._root: TrieNode = TrieNode()
         self._size: int = 0
+
+    def __contains__(self, item: str) -> bool:
+        """Enable the use of membership test operator 'in' for the class."""
+        try:
+            return self.find(item)
+        except TypeError as exc:
+            raise TypeError(
+                "The 'in' operator only support non-empty string comparisons."
+            ) from exc
+
+    def __len__(self) -> int:
+        """Enable the use of 'len' operator for retrieving the total number of words."""
+        return self._size
 
     @property
     def root(self) -> TrieNode:
@@ -32,6 +53,68 @@ class Trie:
     def size(self) -> int:
         """Declare 'size' as a read-only attribute."""
         return self._size
+    
+    @staticmethod
+    def from_list(words: List[str]) -> Trie:
+        """Create a Trie object from a python list.
+        
+        Args:
+            words (List[str]): A list of words to be inserted.
+    
+        Returns:
+            Trie: A Trie object with inserted words from the list.
+
+        Raises:
+            TypeError: The input parameter 'words' is not a list of strings.
+        
+        To instantiate:
+            >>> trie = Trie.from_list([...])
+        """
+        if not (
+            isinstance(words, list) or 
+            all([isinstance(w, str) for w in words])
+        ):
+            raise TypeError("The input parameter 'words' must be a list of strings.")
+
+        trie = Trie()
+
+        for w in words:
+            trie.insert(w)
+
+        return trie
+
+    @staticmethod
+    def from_txt(path: str) -> Trie:
+        """Create a Trie object from a txt file.
+        
+        Args:
+            path (str): The path of the txt file.
+    
+        Returns:
+            Trie: A Trie object with inserted words from the file.
+
+        Raises:
+            TypeError: The input parameter 'path' is not a string.
+            FileNotFoundError: The file with the input path does not exist.
+        
+        To instantiate:
+            >>> trie = Trie.from_txt('...')
+        """
+        if not isinstance(path, str):
+            raise TypeError("The input parameter 'path' must be a string.")
+        
+        words = []
+
+        try:
+            with open(path, 'r') as f:
+                for line in f:
+                    words.extend(line.strip().split())
+        except FileNotFoundError as exc:
+            raise FileNotFoundError(
+                f"The file with the path '{path}' is not found"
+            ) from exc
+        
+        return Trie.from_list(words)
 
     def insert(self, word: str) -> bool:
         """Insert the word into the trie.
@@ -192,16 +275,3 @@ class Trie:
         dfs(node)
         # Return the list sorted by the length of each word
         return sorted(res, key=len)
-    
-    def __contains__(self, item: str) -> bool:
-        """Enable the use of membership test operator 'in' for the class."""
-        try:
-            return self.find(item)
-        except TypeError as exc:
-            raise TypeError(
-                "The 'in' operator only support non-empty string comparisons."
-            ) from exc
-
-    def __len__(self) -> int:
-        """Enable the use of 'len' operator for retrieving the total number of words."""
-        return self._size
