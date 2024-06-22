@@ -13,13 +13,15 @@ Insertion / Deletion       |   $O(l)$   |   $O(1)$
 Searching       |   $O(k)$   |   $O(n)$  
 Prefix Matching |   $O(l)$   |   $O(l * n)$  
 Word Completion | $O(l + a\^{k - l})$* |   $O(l * n)$   
-Fuzzy Search    |       $O(m * a\^{m})$*     |   $O(k * m * n)$  
+Fuzzy Search    |       $O(m * a\^{m})$*     |   $O(j * m * n)$  
 
-$a =$ Number of characters in each level <br/>
-$m =$ Number of mismatches in the key <br/>
-$n =$ Number of elements in the array <br/>
+$a =$ Number of characters on each level <br/>
+$j =$ Number of the characters in a key <br/>
 $k =$ Length of the longest key in the trie <br/>
 $l =$ Length of the input key <br/>
+$m =$ Number of mismatches in the key <br/>
+$n =$ Number of keys in the array <br/>
+
 
 \* Runtime heavily depends on the number of characters in each level
 
