@@ -4,7 +4,7 @@
 Prefix-tree data structure with an approximate string matching algorithm modified from Shang and Merrettal's implementation [1].
 
 ## What is a Trie (Prefix-Tree)?
-A trie is a tree data structure with each node storing a character of the key. A complete key is formed by a path from the root to the node marked with the end of word. Keys with the same prefixes share the same node in the trie. This compressed nature of the key representation enables <b>more efficient key lookups and prefix matching</b> than other primitive data structures, e.g. arrays or python lists.
+A trie is a tree data structure with each node storing a character of the key. A complete key is formed by a path from the root to the node marked with the end of word. Keys with the same prefixes share the same node in the trie. This compressed nature of the key representation enables <b>more efficient key lookups and prefix matching</b> than other primitive data structures, e.g. arrays or python lists, and <b>time complexity independent to the number of keys</b> in the trie..
 
 Time complexity:
 []()            |   Trie     |  Array
@@ -12,12 +12,16 @@ Time complexity:
 Insertion / Deletion       |   $O(l)$   |   $O(1)$    
 Searching       |   $O(k)$   |   $O(n)$  
 Prefix Matching |   $O(l)$   |   $O(n * l)$  
-Word Completion | $O(l + 26\^{k - l})$ |   $O(n * l)$  
-Fuzzy Search    |            |   $O(n * k * l)$  
+Word Completion | $O(l + a\^{k - l})$* |   $O(n * l)$  
+Fuzzy Search    |       $O(m * a\^{m})$*     |   $O(n * k * l)$  
 
+$a =$ Number of characters in each level <br/>
+$m =$ Number of mismatches in the key <br/>
 $n =$ Number of elements in the array <br/>
 $k =$ Length of the longest key in the trie <br/>
-$l =$ Length of the input key
+$l =$ Length of the input key <br/>
+
+\* Runtime heavily depends on the number of characters in each level
 
 ## Import Data Structures
 The `py_trie/` module contains the 2 implementations of the trie.
