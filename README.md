@@ -23,7 +23,7 @@ $m =$ Number of mismatches in the key <br/>
 $n =$ Number of keys in the array <br/>
 
 
-\* Runtime heavily depends on the number of characters in each level
+\* Runtime heavily depends on the number of characters on each level
 
 ## Import Data Structures
 The `py_trie/` module contains the 2 implementations of the trie.
