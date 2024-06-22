@@ -9,7 +9,7 @@ A trie is a tree data structure with each node storing a character of the key. A
 Time complexity:
 []()            |   Trie     |  Array
 --------------- | :--------: | :-------------:
-Insertion / Deletion       |   $O(k)$   |   $O(1)$    
+Insertion / Deletion       |   $O(l)$   |   $O(1)$    
 Searching       |   $O(k)$   |   $O(n)$  
 Prefix Matching |   $O(l)$   |   $O(n * l)$  
 Word Completion | $O(l + 26\^{k - l})$ |   $O(n * l)$  
