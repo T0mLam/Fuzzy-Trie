@@ -1,9 +1,23 @@
-# Fuzzy-Trie (unfinished)
+# Fuzzy-Trie
 
 ## Project Description
 Prefix-tree data structure with an approximate string matching algorithm modified from Shang and Merrettal's implementation [1].
 
 ## What is a Trie (Prefix-Tree)?
+A trie is a tree data structure with each node storing a character of the key. A complete key is formed by a path from the root to the node marked with the end of word. Keys with the same prefixes share the same node in the trie. This compressed nature of the key representation enables <b>more efficient key lookups and prefix matching</b> than other primitive data structures, e.g. arrays or python lists.
+
+Time complexity:
+[]()            |   Trie     |  Array
+--------------- | :--------: | :-------------:
+Insertion       |   $O(k)$   |   $O(1)$    
+Searching       |   $O(k)$   |   $O(n)$  
+Prefix Matching |   $O(k)$   |   $O(nl)$  
+Word Completion |            |   $O(nl)$  
+Fuzzy Search    |            |
+
+$n =$ Number of elements in the array <br/>
+$k =$ Length of the longest key in the trie <br/>
+$l =$ Length of the input key
 
 ## Import Data Structures
 The `py_trie/` module contains the 2 implementations of the trie.
