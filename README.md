@@ -11,9 +11,9 @@ Time complexity:
 --------------- | :--------: | :-------------:
 Insertion       |   $O(k)$   |   $O(1)$    
 Searching       |   $O(k)$   |   $O(n)$  
-Prefix Matching |   $O(k)$   |   $O(nl)$  
-Word Completion |            |   $O(nl)$  
-Fuzzy Search    |            |
+Prefix Matching |   $O(l)$   |   $O(n * l)$  
+Word Completion | $O(l + 26\^{k - l})$ |   $O(n * l)$  
+Fuzzy Search    |            |   $O(n * k * l)$  
 
 $n =$ Number of elements in the array <br/>
 $k =$ Length of the longest key in the trie <br/>
