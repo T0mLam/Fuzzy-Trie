@@ -11,9 +11,9 @@ Time complexity:
 --------------- | :--------: | :-------------:
 Insertion / Deletion       |   $O(l)$   |   $O(1)$    
 Searching       |   $O(k)$   |   $O(n)$  
-Prefix Matching |   $O(l)$   |   $O(n * l)$  
-Word Completion | $O(l + a\^{k - l})$* |   $O(n * l)$  
-Fuzzy Search    |       $O(m * a\^{m})$*     |   $O(n * k * l)$  
+Prefix Matching |   $O(l)$   |   $O(l * n)$  
+Word Completion | $O(l + a\^{k - l})$* |   $O(l * n)$   
+Fuzzy Search    |       $O(m * a\^{m})$*     |   $O(k * m * n)$  
 
 $a =$ Number of characters in each level <br/>
 $m =$ Number of mismatches in the key <br/>
