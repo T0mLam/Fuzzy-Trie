@@ -4,7 +4,7 @@
 Prefix-tree data structure with an approximate string matching algorithm modified from Shang and Merrettal's implementation [1].
 
 ## What is a Trie (Prefix-Tree)?
-A trie is a tree data structure with each node storing a character of the key. A complete key is formed by a path from the root to the node marked with the end of word. Keys with the same prefixes share the same path in the trie. This compressed nature of the key representation enables <b>more efficient key lookups and prefix matching</b> than other primitive data structures, e.g. arrays or python lists, and <b>time complexity independent to the number of keys</b> stored in the trie.
+A trie is a tree data structure with each node storing a character of the key. A complete key is formed by a path from the root to the node marked with the end of word. Keys with the same prefixes share the same path in the trie. This compressed nature of the key representation enables <b>more efficient key lookups and prefix matching</b> than other primitive data structures, e.g. arrays or python lists, and <b>time complexity independent of the number of keys</b> stored in the trie.
 
 Time complexity:
 []()            |   Trie     |  Array
