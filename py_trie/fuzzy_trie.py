@@ -8,12 +8,13 @@ class FuzzyTrie(Trie):
     """A prefix tree data structure with approximate string matching function.
     
     Attributes:
-        root:
+        root (TrieNode):
             A pointer to the root of the Trie.
-        size: 
+        size (int): 
             The total number of words in the Trie.
-        lower_case (Default=False): 
+        lower_case (bool): 
             Whether all the input words will be converted to lower-case. 
+            (Default=False)
             
     Methods:
         insert: 
