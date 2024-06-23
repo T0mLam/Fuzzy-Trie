@@ -8,28 +8,40 @@ class Trie:
     """A prefix tree data structure which stores an alphabet as value in each node.
     
     Attributes:
-        root: A pointer to the root of the Trie.
-        size: The total number of words in the Trie.
+        root: 
+            A pointer to the root of the Trie.
+        size: 
+            The total number of words in the Trie.
+        lower_case (Default=False): 
+            Whether all the input words will be converted to lower-case. 
 
     Methods:
-        insert: Insert a string into the Trie.
-        find: Return True if the word is in the Trie else False.
-        delete: Delete a word in the Trie and return True if successful.
-        complete: Complete a word based on the input of the user and
-                  return the list of words ordered by their length.
+        insert: 
+            Insert a string into the Trie.
+        find: 
+            Return True if the word is in the Trie else False.
+        delete: 
+            Delete a word in the Trie and return True if successful.
+        complete: 
+            Complete a word based on the input of the user and
+            return the list of words ordered by their length.
 
     Class Methods:
-        from_list: Create a Trie object from a python list.
-        from_txt: Create a Trie object from a txt file.
+        from_list: 
+            Create a Trie object from a python list.
+        from_txt: 
+            Create a Trie object from a txt file.
 
     To instantiate:
-        >>> trie = Trie()
+        >>> case_sensitive_trie = Trie()
+        >>> case_insensitive_trie = Trie(lower_case=True)
     """
     
-    def __init__(self) -> None:
+    def __init__(self, lower_case: bool = False) -> None:
         """Construct the root of the trie."""
         self._root: TrieNode = TrieNode()
         self._size: int = 0
+        self._lower_case: bool = lower_case
 
     def __contains__(self, item: str) -> bool:
         """Enable the use of membership test operator 'in' for the class."""
@@ -53,6 +65,11 @@ class Trie:
     def size(self) -> int:
         """Declare 'size' as a read-only attribute."""
         return self._size
+    
+    @property
+    def lower_case(self) -> bool:
+        """Declare 'lower_case' as a read-only attribute."""
+        return self._lower_case
     
     @classmethod
     def from_list(cls, words: List[str]) -> Trie:
@@ -130,9 +147,16 @@ class Trie:
 
         Raises:
             TypeError: Errors caused by non-string or empty input of 'word'.
+
+        Example:
+            >>> trie = Trie()
+            >>> trie.insert('...')
         """
         if not isinstance(word, str) or not word:
             raise TypeError("The input parameter 'word' must be a non-empty string")
+        
+        if self._lower_case:
+            word = word.lower()
 
         # Create a pointer to the root
         node = self._root
@@ -164,6 +188,10 @@ class Trie:
 
         Raises:
             TypeError: Errors caused by non-string or empty input of 'word'.
+
+        Example:
+            >>> trie = Trie()
+            >>> trie.delete('...')
         """
         if not isinstance(word, str) or not word:
             raise TypeError("The input parameter 'word' must be a non-empty string")
@@ -171,6 +199,9 @@ class Trie:
         # Return False if the word to be deleted is not present in the trie.
         if not self.find(word):
             return False
+        
+        if self._lower_case:
+            word = word.lower()
 
         def dfs(i: int, node: TrieNode) -> None:
             # Stop the recusion whether after reaching the last character.
@@ -217,9 +248,16 @@ class Trie:
 
         Raises:
             TypeError: Errors caused by non-string or empty input of 'word'.
+        
+        Example:
+            >>> trie = Trie()
+            >>> is_found = trie.find('...')
         """
         if not isinstance(word, str) or not word:
             raise TypeError("The input parameter 'word' must be a non-empty string")
+        
+        if self._lower_case:
+            word = word.lower()
 
         node = self._root
         # Check every character in the word
@@ -244,9 +282,16 @@ class Trie:
 
         Raises:
             TypeError: Errors caused by non-string input of 'word'.
+
+        Example:
+            >>> trie = Trie()
+            >>> results = trie.complete('...')
         """
         if not isinstance(word, str):
             raise TypeError("The input parameter 'word' must be a string")
+        
+        if self._lower_case:
+            word = word.lower()
 
         node = self._root
         res = []

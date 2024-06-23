@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from .node import TrieNode
 from .trie import Trie
@@ -8,59 +8,83 @@ class FuzzyTrie(Trie):
     """A prefix tree data structure with approximate string matching function.
     
     Attributes:
-        root: A pointer to the root of the Trie.
-        size: The total number of words in the Trie.
-
+        root:
+            A pointer to the root of the Trie.
+        size: 
+            The total number of words in the Trie.
+        lower_case (Default=False): 
+            Whether all the input words will be converted to lower-case. 
+            
     Methods:
-        insert: Insert a string into the Trie.
-        find: Return True if the word is in the Trie else False.
-        delete: Delete a word in the Trie and return True if successful.
-        complete: Complete a word based on the input of the user and
-                  return the list of words ordered by their length.
-        fizzy_search: Search a list of words within a Levenshtein distance
-                      to the target string in the trie.
+        insert: 
+            Insert a string into the Trie.
+        find: 
+            Return True if the word is in the Trie else False.
+        delete:
+            Delete a word in the Trie and return True if successful.
+        complete: 
+            Complete a word based on the input of the user and
+            return the list of words ordered by their length.
+        fizzy_search: 
+            Search a list of words within a Levenshtein distance
+            to the target string in the trie.
         
     Class Methods: 
-        from_list: Create a FuzzyTrie object from a python list.
-        from_txt: Create a FuzzyTrie object from a txt file.
+        from_list: 
+            Create a FuzzyTrie object from a python list.
+        from_txt: 
+            Create a FuzzyTrie object from a txt file.
 
     To instantiate:
-        >>> trie = FuzzyTrie()
+        >>> case_sensitive_trie = FuzzyTrie()
+        >>> case_insensitive_trie = FuzzyTrie(lower_case=True)
     """
     
-    def __init__(self) -> None:
+    def __init__(self, lower_case: bool = False) -> None:
         """Inherit the attributes and methods from the base Trie."""
-        super().__init__()
+        super().__init__(lower_case)
 
     def fuzzy_search(
         self,
         target: str, 
         threshold: int,
-        num_return: int | None = None,
+        num_return: Optional[int] = None,
         sort_by_distance: bool = False
     ) -> List[str]:
         """An approximate string matching method that return a list of word 
         within a Levenshtein distance threshold.
         
         Args:
-            target (str): The target word.
-            threshold (int): The maximum Levenshtein distance difference.
-            sort_by_distance (bool): Return the words in ascending order of 
-                                     LD difference. (Default=False)
-            num_return (int): The maximum number of return words. (Default=None)
+            target (str): 
+                The target word.
+            threshold (int): 
+                The maximum Levenshtein distance difference.
+            sort_by_distance (bool): 
+                Return the words in ascending order of LD difference. (Default=False)
+            num_return (int): 
+                The maximum number of return words. (Default=None)
 
         Returns:
-            List[str]:  A list of words that are within the Levenshtein distance 
-                        threshold in the trie.
+            List[str]:  
+                A list of words that are within the Levenshtein distance threshold in the trie.
 
         Raises:
-            TypeError: Invalid data type of input parameter 'word'.
-            ValueError: Invalid data type and range of input parameters
-                        'threshold' or 'num_return'.
+            TypeError: 
+                Invalid data type of input parameter 'word'.
+            ValueError: 
+                Invalid data type and range of input parameters 'threshold' or 'num_return'.
 
         Notes:
-            Additional time complexity is introduced 
-            if 'sort_by_distance' is set to True.
+            Additional time complexity is introduced if 'sort_by_distance' is set to True.
+
+        Example:
+            >>> trie = FuzzyTrie()
+            >>> results = trie.fuzzy_search(
+            >>>     target='hello', 
+            >>>     threshold=1
+            >>>     num_return=5
+            >>>     sort_by_distance=True
+            >>> )
         """
         if not isinstance(target, str):
             raise TypeError("The input parameter 'target' must be a string.")

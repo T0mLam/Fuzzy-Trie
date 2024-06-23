@@ -40,3 +40,4 @@ class TestFuzzyTrie(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+    t = FuzzyTrie.fuzzy_search()
