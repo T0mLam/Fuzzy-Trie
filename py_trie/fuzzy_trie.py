@@ -66,16 +66,19 @@ class FuzzyTrie(Trie):
 
         Returns:
             List[str]:  
-                A list of words that are within the Levenshtein distance threshold in the trie.
+                A list of words that are within the Levenshtein distance threshold
+                in the trie.
 
         Raises:
             TypeError: 
                 Invalid data type of input parameter 'word'.
             ValueError: 
-                Invalid data type and range of input parameters 'threshold' or 'num_return'.
+                Invalid data type and range of input parameters 'threshold'
+                or 'num_return'.
 
         Notes:
-            Additional time complexity is introduced if 'sort_by_distance' is set to True.
+            Additional time complexity is introduced if 'sort_by_distance' 
+            is set to True.
 
         Example:
             >>> trie = FuzzyTrie()

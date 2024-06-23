@@ -2,9 +2,11 @@ class TrieNode:
     """An individual trie node.
     
     Attributes:
-        children (dict): A dictionary mapping the character to its TrieNode object.
-        end_of_word (bool): A boolean value indicating whether the current character
-                            is the end of the word.
+        children (dict): 
+            A dictionary mapping the character to its TrieNode object.
+        end_of_word (bool): 
+            A boolean value indicating whether the current character 
+            is the end of the word.
     """
     
     __slots__ = ('children', 'end_of_word')
