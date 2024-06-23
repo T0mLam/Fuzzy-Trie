@@ -23,10 +23,15 @@ $m =$ Number of mismatches in the key <br/>
 $n =$ Number of keys in the array <br/>
 
 
-\* Runtime heavily depends on the number of characters on each level
+\* Runtime heavily depends on the number of characters on each level.
 
 ## Import Data Structures
 The `py_trie/` module contains the 2 implementations of the trie.
+
+Content: 
+1. **node.py** - The implementation of the TrieNode.
+2. **trie.py** - The implementation of the Trie class with typical trie attributes.
+3. **fuzzy_trie.py** - The implementation of the FuzzyTrie class (inherited from the base Trie) with a fuzzy search method.
 
 To import and use the data structure independently, add the following code in your program:
 ```python
@@ -42,6 +47,11 @@ from py_trie.fuzzy_trie import FuzzyTrie
 ## Run Unit Tests
 The `tests/` folder contains unit tests for the modules in `py_trie/`.
 
+Content:
+1. **test_trie.py** - The unit test for the Trie class.
+2. **test_fuzzy_trie.py** - The unit test for the FuzzyTrie class.
+3. **example.txt** - A sample text file for the file input test.
+   
 To run the tests, execute the following command from the project's root directory:
 ```bash
 python -m unittest tests.{test module}
