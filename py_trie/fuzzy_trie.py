@@ -1,4 +1,4 @@
-from typing import List, Optional
+from typing import Optional, List
 
 from .node import TrieNode
 from .trie import Trie
@@ -50,7 +50,8 @@ class FuzzyTrie(Trie):
         target: str, 
         threshold: int,
         num_return: Optional[int] = None,
-        sort_by_distance: bool = False
+        sort_by_distance: bool = False,
+        case_insensitive: bool = False
     ) -> List[str]:
         """An approximate string matching method that return a list of word 
         within a Levenshtein distance threshold.
@@ -64,6 +65,9 @@ class FuzzyTrie(Trie):
                 Return the words in ascending order of LD difference. (Default=False)
             num_return (int): 
                 The maximum number of return words. (Default=None)
+            case_insensitive (bool):
+                Whether difference in case counts toward the LD difference. 
+                (Default=False)
 
         Returns:
             List[str]:  
@@ -88,6 +92,7 @@ class FuzzyTrie(Trie):
             >>>     threshold=1
             >>>     num_return=5
             >>>     sort_by_distance=True
+            >>>     case_insensitive=True
             >>> )
         """
         if not isinstance(target, str):
@@ -150,7 +155,9 @@ class FuzzyTrie(Trie):
             for col in range(1, cols):
                 # Add the value of the top left grid to curr_row 
                 # if the combination and target share the same letter 
-                if target[col - 1] == letter:
+                if ((case_insensitive and target[col - 1].lower() == letter.lower()) or 
+                    (not case_insensitive and target[col - 1] == letter)
+                ):
                     curr_row.append(prev_row[col - 1])
                     continue
 
