@@ -11,22 +11,12 @@ class TestFuzzyTrie(unittest.TestCase):
         self.trie = FuzzyTrie.from_list(self.words)
 
     def test_fuzzy_search(self):
-        self.assertRaises(
-            TypeError, 
-            self.trie.fuzzy_search, None, 1, 1, True
-        )
-        self.assertRaises(
-            ValueError,
-            self.trie.fuzzy_search, 'a', -1, 1, True
-        )
-        self.assertRaises(
-            ValueError,
-            self.trie.fuzzy_search, 'a', 1, -1, True
-        )
-        self.assertRaises(
-            TypeError, 
-            self.trie.fuzzy_search, 'a', 1, 1, None
-        )
+        self.assertRaises(TypeError, self.trie.fuzzy_search, None, 1, 1, True)
+        self.assertRaises(ValueError, self.trie.fuzzy_search, 'a', -1, 1, True)
+        self.assertRaises(ValueError, self.trie.fuzzy_search, 'a', 1, -1, True)
+        self.assertRaises(TypeError, self.trie.fuzzy_search, 'a', 1, 1, None)
+        self.assertRaises(TypeError, self.trie.fuzzy_search, 'a', 1, 1, True, -1)
+
         self.assertListEqual(
             sorted(self.trie.fuzzy_search('apple', 1)),
             ['abple', 'apple', 'apples']
@@ -36,8 +26,8 @@ class TestFuzzyTrie(unittest.TestCase):
             sorted(self.words)
         )
         self.assertIn('app', self.trie.fuzzy_search('app', 1))
+        self.assertEqual(2, len(self.trie.fuzzy_search('apPp', 1, case_insensitive=True)))
 
 
 if __name__ == '__main__':
     unittest.main()
-    t = FuzzyTrie.fuzzy_search()

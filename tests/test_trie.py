@@ -9,11 +9,13 @@ class TestTrie(unittest.TestCase):
 
     def setUp(self):
         self.trie = Trie()
+        self.lower_case_trie = Trie(lower_case=True)
 
     def test_insert(self):
         self.assertRaises(TypeError, self.trie.insert, 1)
         self.assertRaises(TypeError, self.trie.insert, '')
         self.assertTrue(self.trie.insert('apple'))
+        self.assertTrue(self.lower_case_trie.insert('ApPlE'))
         
     def test_find(self):
         self.test_insert()
@@ -22,6 +24,8 @@ class TestTrie(unittest.TestCase):
         self.assertTrue(self.trie.find('apple'))
         self.assertFalse(self.trie.find('app'))
         self.assertFalse(self.trie.find('aPple'))
+        self.assertTrue(self.lower_case_trie.find('ApPlE'))
+        self.assertTrue(self.lower_case_trie.find('apple'))
         
     def test_complete(self):
         self.test_insert()
@@ -30,6 +34,8 @@ class TestTrie(unittest.TestCase):
         self.assertIn('apple', self.trie.complete(''))
         self.assertNotIn('apple', self.trie.complete('apple'))
         self.assertNotIn('apple', self.trie.complete('Ap'))
+        self.assertIn('apple', self.lower_case_trie.complete('aPp'))
+        self.assertIn('apple', self.lower_case_trie.complete('app'))
         
     def test_from_list(self):
         words = ['apps', 'apple', 'apply']

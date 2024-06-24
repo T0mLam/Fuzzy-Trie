@@ -112,6 +112,9 @@ class FuzzyTrie(Trie):
                 "The input parameter 'num_return' must be a positive integer"
             )
         
+        if not isinstance(case_insensitive, bool):
+            raise TypeError("The input parameter 'case_insensitive' must be a boolean.")
+        
         cols = len(target) + 1
         res = []
         
