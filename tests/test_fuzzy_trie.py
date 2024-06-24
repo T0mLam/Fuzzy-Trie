@@ -26,7 +26,9 @@ class TestFuzzyTrie(unittest.TestCase):
             sorted(self.words)
         )
         self.assertIn('app', self.trie.fuzzy_search('app', 1))
-        self.assertEqual(2, len(self.trie.fuzzy_search('apPp', 1, case_insensitive=True)))
+        self.assertEqual(
+            2, len(self.trie.fuzzy_search('apPp', 1, case_insensitive=True))
+        )
 
 
 if __name__ == '__main__':
