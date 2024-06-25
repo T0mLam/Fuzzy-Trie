@@ -196,13 +196,13 @@ class Trie:
         """
         if not isinstance(word, str) or not word:
             raise TypeError("The input parameter 'word' must be a non-empty string")
+
+        if self._lower_case:
+            word = word.lower()
         
         # Return False if the word to be deleted is not present in the trie.
         if not self.find(word):
             return False
-        
-        if self._lower_case:
-            word = word.lower()
 
         def dfs(i: int, node: TrieNode) -> None:
             # Stop the recusion whether after reaching the last character.
